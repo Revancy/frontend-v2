@@ -38,7 +38,7 @@ export function getLists(quantity) {
         }
       ]
 
-      fetch('http://172.31.227.170:8000/api/v1/getheaders?page=1')
+      fetch('http://172.31.131.62:8000/api/v1/getheaders?page=1')
         .then((response) => {
           return response.json();
         })

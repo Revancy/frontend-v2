@@ -68,7 +68,7 @@ export default class CardsContainer extends Component {
     // const display = item.id == 0 ? 'none' : 'block';
     const listId = item.id === -1 ? 'menu' : '';
     const style = item.id === -1 ? {
-      backgroundImage: `url('images/menu.png')`,
+      backgroundImage: `url('images/menu1.png')`,
       marginRight: `0`,
       paddingTop: '0',
       boxShadow: 'none'
