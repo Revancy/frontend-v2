@@ -38,7 +38,7 @@ export function getLists(quantity) {
         }
       ]
 
-      fetch('http://172.31.227.170:8000/api/v1/getheaders?page=1')
+      fetch('http://172.31.131.62:8000/api/v1/getheaders?page=1')
         .then((response) => {
           return response.json();
         })
@@ -62,19 +62,19 @@ export function getLists(quantity) {
           lists.push({
             id: 2,
             name: 'Work',
-            color: '#FDCD7F',
+            color: '#fd7e7e',
             cards: work
           });
           lists.push({
             id: 3,
             name: 'Due 14.11.2018',
-            color: '#D2FD7E',
+            color: '#fdcc7e',
             cards: []
           });
           lists.push({
             id: 4,
             name: 'Mihail Gavrilita',
-            color: '#FF69B4',
+            color: '#fafd7e',
             cards: mihail
           });
 
