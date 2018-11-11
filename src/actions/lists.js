@@ -56,7 +56,27 @@ export function getLists(quantity) {
         },
         {
           id: 1,
-          name: 'FAF-161',
+          name: 'Personal',
+          color: '#7efdd1',
+          cards: [
+            {
+              id: 2,
+              firstName: 'Vasile',
+              lastName: 'Drumea',
+              title: 'Unity'
+            },
+            {
+              id: 3,
+              firstName: 'Mihai',
+              lastName: 'Lungu',
+              title: 'Tester'
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'not Personal',
+          color: '#7efdd1',
           cards: [
             {
               id: 2,

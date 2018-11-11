@@ -69,20 +69,39 @@ export default class CardsContainer extends Component {
     const listId = item.id === -1 ? 'menu' : '';
     const style = item.id === -1 ? {
       backgroundImage: `url('images/menu.png')`,
-      marginRight: `0`
+      marginRight: `0`,
+      paddingTop: '0',
+      boxShadow: 'none'
     } : item.id === 0 ? {
-
+      borderRadius: '0',
+      boxShadow: 'none'
     } : {
       backgroundColor: '#191919',
+      textAlign: 'center',
       border: 'none',
       boxShadow: 'none'
     };
-    const isInbox = item.id === 0 ? { fontSize: '24px' } : {}
+    const isInbox = item.id === 0 ? { fontSize: '24px' } : {
+      backgroundColor: item.color,
+      fontSize: '24px',
+      padding: '10px',
+      display: 'inline-block',
+      borderRadius: '0px 0px 9px 9px',
+      boxShadow: '0 2px 8px -1px rgba(0, 0, 0, 0.3)'
+    }
+
+    const deskHeadStyles = item.id > 0 ? {
+      padding: "0",
+      boxShadow: '0 5dpx 50px 9px rgba(0, 0, 0, 0.3)'
+    } : {
+      padding: '30px',
+      fontSize: '42px'
+    }
 
 
     return connectDragSource(connectDropTarget(
       <div className="desk" style={style} id={listId}>
-        {item.id != -1 ? (<div className="desk-head">
+        {item.id != -1 ? (<div style={deskHeadStyles} className="desk-head">
           <div className="desk-name" style={isInbox}>{item.name}</div>
         </div>) : (<div></div>)
         }
@@ -97,5 +116,6 @@ export default class CardsContainer extends Component {
       }
       </div>
     ));
+
   }
 }

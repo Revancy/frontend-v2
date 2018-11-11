@@ -83,6 +83,7 @@ export default class Board extends Component {
   }
 
   moveList(listId, nextX) {
+
     const { lastX } = this.findList(listId);
     this.props.moveList(lastX, nextX);
   }
@@ -99,6 +100,7 @@ export default class Board extends Component {
 
   render() {
     const { lists } = this.props;
+
 
     return (
       <div style={{ height: '100%' }}>
