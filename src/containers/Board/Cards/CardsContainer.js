@@ -65,20 +65,36 @@ export default class CardsContainer extends Component {
   render() {
     const { connectDropTarget, connectDragSource, item, x, moveCard, isDragging } = this.props;
     const opacity = isDragging ? 0.5 : 1;
+    // const display = item.id == 0 ? 'none' : 'block';
+    const listId = item.id === -1 ? 'menu' : '';
+    const style = item.id === -1 ? {
+      backgroundImage: `url('images/menu.png')`,
+      marginRight: `0`
+    } : item.id === 0 ? {
+
+    } : {
+      backgroundColor: '#191919',
+      border: 'none',
+      boxShadow: 'none'
+    };
+    const isInbox = item.id === 0 ? { fontSize: '24px' } : {}
+
 
     return connectDragSource(connectDropTarget(
-      <div className="desk" style={{ opacity }}>
-        <div className="desk-head">
-          <div className="desk-name">{item.name}</div>
-        </div>
-        <Cards
+      <div className="desk" style={style} id={listId}>
+        {item.id != -1 ? (<div className="desk-head">
+          <div className="desk-name" style={isInbox}>{item.name}</div>
+        </div>) : (<div></div>)
+        }
+        {item.id != -1 ? (<Cards
           moveCard={moveCard}
           x={x}
           cards={item.cards}
           startScrolling={this.props.startScrolling}
           stopScrolling={this.props.stopScrolling}
           isScrolling={this.props.isScrolling}
-        />
+        />) : (<div></div>)
+      }
       </div>
     ));
   }
