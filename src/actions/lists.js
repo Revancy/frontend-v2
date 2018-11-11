@@ -35,65 +35,129 @@ export function getLists(quantity) {
         {
           id: -1,
           name: 'Menu',
-        },
-        {
-          id: 0,
-          name: 'Inbox',
-          cards: [
-            {
-              id: 0,
-              firstName: 'Dragos',
-              lastName: 'Strainu',
-              title: 'Full-time Hackathoner'
-            },
-            {
-              id: 1,
-              firstName: 'Stanislav',
-              lastName: 'Spatari',
-              title: 'WebScrapper'
-            }
-          ]
-        },
-        {
-          id: 1,
-          name: 'Personal',
-          color: '#7efdd1',
-          cards: [
-            {
-              id: 2,
-              firstName: 'Vasile',
-              lastName: 'Drumea',
-              title: 'Unity'
-            },
-            {
-              id: 3,
-              firstName: 'Mihai',
-              lastName: 'Lungu',
-              title: 'Tester'
-            }
-          ]
-        },
-        {
-          id: 2,
-          name: 'not Personal',
-          color: '#7efdd1',
-          cards: [
-            {
-              id: 2,
-              firstName: 'Vasile',
-              lastName: 'Drumea',
-              title: 'Unity'
-            },
-            {
-              id: 3,
-              firstName: 'Mihai',
-              lastName: 'Lungu',
-              title: 'Tester'
-            }
-          ]
         }
       ]
-      dispatch({ type: GET_LISTS, lists, isFetching: true });
+
+      fetch('http://172.31.227.170:8000/api/v1/getheaders?page=1')
+        .then((response) => {
+          return response.json();
+        })
+        .then((myJson) => {
+          const mihail = myJson.filter(el => el.fromName.includes('Mihail'));
+          let rest = myJson.filter(el => !(el.fromName.includes('Mihail')));
+          const work = rest.filter(el => el.fromMail.includes('utm.'));
+          rest = rest.filter(el => !(el.fromMail.includes('utm.')));
+          const inbox = {
+            id: 0,
+            name: 'Inbox',
+            cards: rest
+          }
+          lists.push(inbox);
+          lists.push({
+            id: 1,
+            name: 'Personal',
+            color: '#7efdd1',
+            cards: []
+          });
+          lists.push({
+            id: 2,
+            name: 'Work',
+            color: '#FDCD7F',
+            cards: work
+          });
+          lists.push({
+            id: 3,
+            name: 'Due 14.11.2018',
+            color: '#D2FD7E',
+            cards: []
+          });
+          lists.push({
+            id: 4,
+            name: 'Mihail Gavrilita',
+            color: '#FF69B4',
+            cards: mihail
+          });
+
+          console.log(lists);
+          dispatch({ type: GET_LISTS, lists, isFetching: true });
+        });
+
+
+      // const lists = [
+      //   {
+      //     id: -1,
+      //     name: 'Menu',
+      //   },
+      //   {
+      //     id: 0,
+      //     name: 'Inbox',
+      //     cards: [
+      //       {
+      //         id: 0,
+      //         firstName: 'Dragos',
+      //         lastName: 'Strainu',
+      //         title: 'Full-time Hackathoner',
+      //         subject: 'Help: mail automatisation'
+      //       },
+      //       {
+      //         id: 1,
+      //         firstName: 'Stanislav',
+      //         lastName: 'Spatari',
+      //         title: 'WebScrapper',
+      //         subject: 'Salut, cum la tine'
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: 1,
+      //     name: 'Personal',
+      //     color: '#7efdd1',
+      //     cards: [
+      //       {
+      //         id: 2,
+      //         firstName: 'Vasile',
+      //         lastName: 'Drumea',
+      //         title: 'Unity',
+      //         subject: '[FAF-151][PAD] Lab2'
+      //       },
+      //       {
+      //         id: 3,
+      //         firstName: 'Mihai',
+      //         lastName: 'Lungu',
+      //         title: 'Tester',
+      //         subject: '[FAF-151][PAD] Lab2'
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: 2,
+      //     name: 'Work',
+      //     color: '#FDCD7F',
+      //     cards: [
+      //       {
+      //         id: 4,
+      //         firstName: 'Vasile',
+      //         lastName: 'Drumea',
+      //         title: 'Unity',
+      //         subject: 'Hi'
+      //       },
+      //       {
+      //         id: 5,
+      //         firstName: 'Mihai',
+      //         lastName: 'Lungu',
+      //         title: 'Tester',
+      //         subject: 'Nice to meet you!'
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: 3,
+      //     name: 'Due 14.11.2018',
+      //     color: '#D2FD7E',
+      //     cards: []
+      //   }
+      // ]
+
     }, 1000); // fake delay
     dispatch({ type: GET_LISTS_START, isFetching: false });
   };
