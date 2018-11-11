@@ -62,19 +62,19 @@ export function getLists(quantity) {
           lists.push({
             id: 2,
             name: 'Work',
-            color: '#FDCD7F',
+            color: '#fd7e7e',
             cards: work
           });
           lists.push({
             id: 3,
             name: 'Due 14.11.2018',
-            color: '#D2FD7E',
+            color: '#fdcc7e',
             cards: []
           });
           lists.push({
             id: 4,
             name: 'Mihail Gavrilita',
-            color: '#FF69B4',
+            color: '#fafd7e',
             cards: mihail
           });
 
